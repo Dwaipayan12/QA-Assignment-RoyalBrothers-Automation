@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="1" failed="3" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-08-30T19:28:08 IST" name="Command line suite" finished-at="2025-08-30T19:29:33 IST" duration-ms="84824">
+    <groups>
+    </groups>
+    <test started-at="2025-08-30T19:28:08 IST" name="Command line test" finished-at="2025-08-30T19:29:33 IST" duration-ms="84824">
+      <class name="com.royalbrothers.RBTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.royalbrothers.RBTest@4eb7f003]" started-at="2025-08-30T19:28:08 IST" name="setup" finished-at="2025-08-30T19:28:22 IST" duration-ms="13645" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="navigateToWebsite()[pri:1, instance:com.royalbrothers.RBTest@4eb7f003]" started-at="2025-08-30T19:28:22 IST" name="navigateToWebsite" finished-at="2025-08-30T19:28:32 IST" duration-ms="10132" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Website not loaded properly expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Website not loaded properly expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at com.royalbrothers.RBTest.navigateToWebsite(RBTest.java:35)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:848)
+at org.testng.TestRunner.run(TestRunner.java:621)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+at org.testng.TestNG.runSuites(TestNG.java:1114)
+at org.testng.TestNG.run(TestNG.java:1082)
+at com.royalbrothers.TestRunner.main(TestRunner.java:14)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToWebsite -->
+        <test-method signature="selectCity()[pri:2, instance:com.royalbrothers.RBTest@4eb7f003]" started-at="2025-08-30T19:28:32 IST" name="selectCity" finished-at="2025-08-30T19:29:02 IST" duration-ms="30022" status="FAIL">
+          <exception class="com.microsoft.playwright.TimeoutError">
+            <message>
+              <![CDATA[Error {
+  message='Timeout 30000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 30000ms exceeded.
+    at ProgressController.run (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\progress.js:78:26)
+    at Frame.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\frames.js:1013:23)
+    at FrameDispatcher.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\frameDispatcher.js:157:30)
+    at FrameDispatcher._handleCommand (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:361:39)
+}
+Call log:
+- waiting for locator("text=Select city")
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 30000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 30000ms exceeded.
+    at ProgressController.run (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\progress.js:78:26)
+    at Frame.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\frames.js:1013:23)
+    at FrameDispatcher.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\frameDispatcher.js:157:30)
+    at FrameDispatcher._handleCommand (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:361:39)
+}
+Call log:
+- waiting for locator("text=Select city")
+
+at com.microsoft.playwright.impl.WaitableResult.get(WaitableResult.java:52)
+at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:120)
+at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:130)
+at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:106)
+at com.microsoft.playwright.impl.FrameImpl.clickImpl(FrameImpl.java:252)
+at com.microsoft.playwright.impl.PageImpl.lambda$click$18(PageImpl.java:682)
+at com.microsoft.playwright.impl.LoggingSupport.lambda$withLogging$0(LoggingSupport.java:36)
+at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47)
+at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:89)
+at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:35)
+at com.microsoft.playwright.impl.PageImpl.click(PageImpl.java:681)
+at com.microsoft.playwright.Page.click(Page.java:3902)
+at com.royalbrothers.RBTest.selectCity(RBTest.java:40)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:848)
+at org.testng.TestRunner.run(TestRunner.java:621)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+at org.testng.TestNG.runSuites(TestNG.java:1114)
+at org.testng.TestNG.run(TestNG.java:1082)
+at com.royalbrothers.TestRunner.main(TestRunner.java:14)
+Caused by: com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 30000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 30000ms exceeded.
+    at ProgressController.run (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\progress.js:78:26)
+    at Frame.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\frames.js:1013:23)
+    at FrameDispatcher.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\frameDispatcher.js:157:30)
+    at FrameDispatcher._handleCommand (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:361:39)
+}
+Call log:
+- waiting for locator("text=Select city")
+
+at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:254)
+at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:211)
+at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:118)
+... 35 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- com.microsoft.playwright.TimeoutError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- selectCity -->
+        <test-method signature="enterBookingInterval()[pri:3, instance:com.royalbrothers.RBTest@4eb7f003]" started-at="2025-08-30T19:29:02 IST" name="enterBookingInterval" finished-at="2025-08-30T19:29:32 IST" duration-ms="30006" status="FAIL">
+          <exception class="com.microsoft.playwright.TimeoutError">
+            <message>
+              <![CDATA[Error {
+  message='Timeout 30000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 30000ms exceeded.
+    at ProgressController.run (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\progress.js:78:26)
+    at Frame.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\frames.js:1013:23)
+    at FrameDispatcher.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\frameDispatcher.js:157:30)
+    at FrameDispatcher._handleCommand (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:361:39)
+}
+Call log:
+- waiting for locator("input[placeholder='Pick-up Date']")
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 30000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 30000ms exceeded.
+    at ProgressController.run (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\progress.js:78:26)
+    at Frame.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\frames.js:1013:23)
+    at FrameDispatcher.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\frameDispatcher.js:157:30)
+    at FrameDispatcher._handleCommand (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:361:39)
+}
+Call log:
+- waiting for locator("input[placeholder='Pick-up Date']")
+
+at com.microsoft.playwright.impl.WaitableResult.get(WaitableResult.java:52)
+at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:120)
+at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:130)
+at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:106)
+at com.microsoft.playwright.impl.FrameImpl.clickImpl(FrameImpl.java:252)
+at com.microsoft.playwright.impl.PageImpl.lambda$click$18(PageImpl.java:682)
+at com.microsoft.playwright.impl.LoggingSupport.lambda$withLogging$0(LoggingSupport.java:36)
+at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47)
+at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:89)
+at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:35)
+at com.microsoft.playwright.impl.PageImpl.click(PageImpl.java:681)
+at com.microsoft.playwright.Page.click(Page.java:3902)
+at com.royalbrothers.RBTest.enterBookingInterval(RBTest.java:48)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:848)
+at org.testng.TestRunner.run(TestRunner.java:621)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+at org.testng.TestNG.runSuites(TestNG.java:1114)
+at org.testng.TestNG.run(TestNG.java:1082)
+at com.royalbrothers.TestRunner.main(TestRunner.java:14)
+Caused by: com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 30000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 30000ms exceeded.
+    at ProgressController.run (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\progress.js:78:26)
+    at Frame.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\frames.js:1013:23)
+    at FrameDispatcher.click (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\frameDispatcher.js:157:30)
+    at FrameDispatcher._handleCommand (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\DWAIPA~1\AppData\Local\Temp\playwright-java-17230179962914869159\package\lib\server\dispatchers\dispatcher.js:361:39)
+}
+Call log:
+- waiting for locator("input[placeholder='Pick-up Date']")
+
+at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:254)
+at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:211)
+at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:118)
+... 35 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- com.microsoft.playwright.TimeoutError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- enterBookingInterval -->
+        <test-method signature="applyLocationFilterAndValidate()[pri:4, instance:com.royalbrothers.RBTest@4eb7f003]" started-at="2025-08-30T19:29:32 IST" name="applyLocationFilterAndValidate" finished-at="2025-08-30T19:29:33 IST" duration-ms="164" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- applyLocationFilterAndValidate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.royalbrothers.RBTest@4eb7f003]" started-at="2025-08-30T19:29:33 IST" name="tearDown" finished-at="2025-08-30T19:29:33 IST" duration-ms="678" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.royalbrothers.RBTest -->
+    </test> <!-- Command line test -->
+  </suite> <!-- Command line suite -->
+</testng-results>
