@@ -163,10 +163,11 @@ public class HomePage {
         int bikeCount = bikeCards.count();
 
         System.out.println("Found " + bikeCount + " bike cards on results page");
-        if(bikeCount==0){
-            System.out.print("Sorry this location have not any bike service");
-            return result;
+        if (bikeCount == 0) {
+            System.out.println("No bikes are available at this location currently.");
+            return result; // returns empty list
         }
+
         if (bikeCount > 0) {
             for (int i = 0; i < bikeCount; i++) {
                 Locator bikeCard = bikeCards.nth(i);

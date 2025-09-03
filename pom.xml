@@ -19,6 +19,7 @@
         <testng.version>7.8.0</testng.version>
     </properties>
 
+
     <dependencies>
         <!-- Playwright Java -->
         <dependency>
@@ -35,7 +36,29 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- SLF4J for logging (optional but recommended by Playwright) -->
+        <!-- Cucumber with TestNG -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.18.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.18.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>7.18.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- SLF4J for logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -63,7 +86,8 @@
                 <version>3.1.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/java/com/royalbrothers/testng.xml</suiteXmlFile>
+<!--                        <suiteXmlFile>src/test/java/com/royalbrothers/testng.xml</suiteXmlFile>-->
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
