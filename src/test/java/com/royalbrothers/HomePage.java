@@ -3,10 +3,11 @@ package com.royalbrothers;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.AriaRole;
-import com.microsoft.playwright.options.LoadState;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.*;
 
 public class HomePage {
     private Page page;
@@ -61,38 +62,36 @@ public class HomePage {
 
 
 
-    // Pickup Date
     public String getPickupDate() {
         Locator pickupDate = page.locator("#pickup-date-desk");
-        pickupDate.waitFor(new Locator.WaitForOptions().setTimeout(2000));
+        pickupDate.waitFor();
         return pickupDate.inputValue();
     }
 
-    // Pickup Time
     public String getPickupTime() {
         Locator pickupTime = page.locator("#pickup-time-desk");
-        pickupTime.waitFor(new Locator.WaitForOptions().setTimeout(2000));
+        pickupTime.waitFor();
         return pickupTime.inputValue();
     }
 
-    //  Drop Date
     public String getDropDate() {
         Locator dropDate = page.locator("#dropoff-date-desk");
-        dropDate.waitFor(new Locator.WaitForOptions().setTimeout(2000));
+        dropDate.waitFor();
         return dropDate.inputValue();
     }
 
-    //  Drop Time
     public String getDropTime() {
         Locator dropTime = page.locator("#dropoff-time-desk");
-        dropTime.waitFor(new Locator.WaitForOptions().setTimeout(2000));
+        dropTime.waitFor();
         return dropTime.inputValue();
     }
+
+
 
     // Get appropriate location for any city
     public String getLocationForCity(String city) {
         switch (city.toLowerCase()) {
-            case "bangalore": return "Whitefield";
+            case "bangalore": return "Yeshwanthpur (BMTC Bus Station)";
             case "belagavi" : return "buddha vihara";
             case "ahmedabad": return "Bopal";
             case "bhubaneswar": return "Bidyabharati Complex";
@@ -126,6 +125,7 @@ public class HomePage {
             case "surat":return "Begampura";
             case "trivandrum":return "Kochuveli Railway Station";
             case "udupi-manipal":return "Manipal Motors - Udupi Road";
+            case "jaisalmer":return "Jaisalmer";
 
             case "bangalore+airport": return "We do not have any bikes in bangalore-airport currently.";
             case "delhi": return "We do not have any bikes in delhi currently.";
@@ -136,6 +136,50 @@ public class HomePage {
             case "manali":return "We do not have any bikes in Manali currently.";
             default: return "City Center";
         }
+
+    }
+
+    public String applyLocationFilter(String location) {
+
+        // 1️⃣ Handle special case
+        if (location.toLowerCase().contains("we do not have any bikes")) {
+            System.out.println("Skipping location filter: No bikes available in this city.");
+            return "NO_LOCATION";
+        }
+
+        // 2️⃣ Wait for and focus on the search box
+        page.waitForSelector("input[placeholder='Search Location']");
+        Locator searchBox = page.locator("input[placeholder='Search Location']");
+        searchBox.click();
+        searchBox.fill(location);
+
+        // 3️⃣ Wait for the location list to appear
+        page.waitForSelector("ul.location_listing li.each_list label");
+
+        // 4️⃣ Find the checkbox label that matches the location text
+        Locator option = page.locator("ul.location_listing li.each_list label")
+                .filter(new Locator.FilterOptions().setHasText(location));
+
+        if (option.count() == 0) {
+            System.out.println("⚠ No matching UI location found: " + location);
+            return "NOT_FOUND_UI";
+        }
+
+        // 5️⃣ Click the first matching location checkbox
+        option.first().click();
+
+        // 6️⃣ Wait for the selected chip to appear and get its exact text
+        page.waitForSelector(".selected_location_filter .chip span");
+        Locator selectedChip = page.locator(".selected_location_filter .chip span");
+        String selectedLocation = selectedChip.first().textContent().trim();
+
+        System.out.println("Selected Location Applied → " + selectedLocation);
+
+        // 7️⃣ Wait for page content to refresh (optional)
+        page.waitForSelector(".search_page_row.each_card_form");
+        page.waitForTimeout(2000);
+
+        return selectedLocation;
     }
 
     // Simple search - avoid all problematic interactions
@@ -144,20 +188,13 @@ public class HomePage {
         page.waitForTimeout(3000);
     }
 
-    // Skip location filter - avoid navigation issues
-    public void applyLocationFilter(String location) {
-        System.out.println("Skipping location filter to avoid navigation issues");
-        System.out.println("Will validate bikes are from: " + location);
-        page.waitForTimeout(2000);
-    }
-
 
     public List<String> getBikeData(String expectedLocation) {
         System.out.println("Collecting bike data from results page...");
 
         page.waitForTimeout(5000); // Wait for results to load
         List<String> result = new ArrayList<>();
-
+        List<Integer>res=new ArrayList<>();
         // Target each bike card on results page
         Locator bikeCards = page.locator(".search_page_row.each_card_form");
         int bikeCount = bikeCards.count();
@@ -174,11 +211,20 @@ public class HomePage {
 
                 // Extract bike model name from h6.bike_name
                 String bikeModel = "Unknown Model";
+                String price="N/A";
                 Locator bikeNameElement = bikeCard.locator("h6.bike_name");
+                // Locator@.search_page_row.each_card_form >> nth=1 >> id.rental_amount
                 if (bikeNameElement.count() > 0) {
                     bikeModel = bikeNameElement.textContent().trim();
                 }
+                if (bikeModel.equals("Unknown Model") || bikeModel.isEmpty()) {
+                    continue;   // skip this bike card completely
+                }
 
+                Locator priceElement = bikeCard.locator("#rental_amount");
+                if (priceElement.count() > 0) {
+                    price = priceElement.textContent().trim();
+                }
                 // Extract location from the default location input field
                 String location = expectedLocation; // Fallback
                 Locator locationInput = bikeCard.locator("input.loc_input");
@@ -197,15 +243,21 @@ public class HomePage {
                     }
                 }
 
-                String bikeInfo = bikeModel + " - Available at " + location;
+
+                String bikeInfo = bikeModel + " - Available at " + location + " - price is " + price;
+                res.add(Integer.parseInt(price));
                 result.add(bikeInfo);
                 System.out.println("Bike " + (i + 1) + ": " + bikeInfo);
             }
+            Collections.sort(res);
+            for(int i=0;i<res.size();i++){
+              //System.out.print(res.get(i)+"    ");
+            }
         } else {
-            System.out.println("No bike cards found on results page");
+           // System.out.println("No bike cards found on results page");
         }
         if (result.size() > 0) {
-            System.out.println("Successfully extracted " + result.size() + " bikes");
+          //  System.out.println("Successfully extracted " + result.size() + " bikes");
             return result; // Return immediately to avoid page context issues
         }
         return result;
@@ -214,11 +266,11 @@ public class HomePage {
 
     // Print bike data
     public void printBikeData(List<String> bikeData) {
-        System.out.println("\n=== BIKE DATA RESULTS ===");
+       // System.out.println("\n=== BIKE DATA RESULTS ===");
         for (int i = 0; i < bikeData.size(); i++) {
-            System.out.println((i + 1) + ". " + bikeData.get(i));
+           // System.out.println((i + 1) + ". " + bikeData.get(i));
         }
-        System.out.println("Total bikes found: " + bikeData.size());
-        System.out.println("========================\n");
+      //  System.out.println("Total bikes found: " + bikeData.size());
+        //System.out.println("========================\n");
     }
 }

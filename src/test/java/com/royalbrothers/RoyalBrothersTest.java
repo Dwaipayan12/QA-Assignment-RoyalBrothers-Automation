@@ -23,55 +23,7 @@ public class RoyalBrothersTest {
       //  cityLocationData = new CityLocationData(page);
     }
 
-//    @Test
-//    public void testBikeSearchAndFilter() {
-//        // Navigate and get auto-detected city (dynamic for any city)
-//        String autoDetectedCity = homePage.navigateAndGetCity();
-//
-//        // Get appropriate location for this city
-//        String locationFilter = homePage.getLocationForCity(autoDetectedCity);
-//        System.out.println("Using location filter for " + autoDetectedCity + ": " + locationFilter);
-//
-//
-//        String pickupDate = homePage.getPickupDate();
-//        String pickupTime = homePage.getPickupTime();
-//        String dropDate = homePage.getDropDate();
-//        String dropTime = homePage.getDropTime();
-//
-//
-//
-//        //homePage.selectDates(pickupDate, pickupTime, dropDate, dropTime);
-//
-//        // Perform search
-//        homePage.performSearch();
-//
-//        // Apply location filter (dynamic for any city)
-//        homePage.applyLocationFilter(locationFilter);
-//
-//        // Collect bike data (bike model and available at)
-//        List<String> bikeData = homePage.getBikeData(locationFilter);
-//
-//
-//        if (bikeData.size() == 0) {
-//            System.out.println("No bikes are available at this location currently.");
-//            // Mark test as success in this scenario
-//            Assert.assertTrue(true, "No bikes available - treated as valid case");
-//        } else {
-//            Assert.assertTrue(bikeData.size() > 0, "Should find bikes for location: " + locationFilter);
-//            homePage.printBikeData(bikeData);
-//        }
-//
-//
-//        // Test execution summary
-//        System.out.println("\n=== DYNAMIC AUTOMATION RESULTS ===");
-//        System.out.println("Auto-detected City: " + autoDetectedCity);
-//        System.out.println("Selected Location: " + locationFilter);
-//        System.out.println("Pickup: " + pickupDate + " at " + pickupTime);
-//        System.out.println("Drop: " + dropDate + " at " + dropTime);
-//        System.out.println("Total Bikes Found: " + bikeData.size());
-//        System.out.println("Automation worked for city: " + autoDetectedCity);
-//        System.out.println("==================================\n");
-//    }
+
 
 
     @Test
@@ -81,12 +33,13 @@ public class RoyalBrothersTest {
 
         // Get appropriate location for this city
         String locationFilter = homePage.getLocationForCity(autoDetectedCity);
-        System.out.println("Using location filter for " + autoDetectedCity + ": " + locationFilter);
+       // System.out.println("Using location filter for " + autoDetectedCity + ": " + locationFilter);
 
         String pickupDate = "";
         String pickupTime = "";
         String dropDate = "";
         String dropTime = "";
+
 
         // Only try to fetch dates/times if service is available
         if (!locationFilter.toLowerCase().contains("we do not have any bikes")) {
@@ -99,7 +52,7 @@ public class RoyalBrothersTest {
         }
 
         homePage.performSearch();
-        homePage.applyLocationFilter(locationFilter);
+        String f_location=homePage.applyLocationFilter(locationFilter);
 
         List<String> bikeData = homePage.getBikeData(locationFilter);
 
@@ -114,7 +67,7 @@ public class RoyalBrothersTest {
         // Test execution summary
         System.out.println("\n=== DYNAMIC AUTOMATION RESULTS ===");
         System.out.println("Auto-detected City: " + autoDetectedCity);
-        System.out.println("Selected Location: " + locationFilter);
+        System.out.println("Selected Location: " + f_location);
         System.out.println("Pickup: " + pickupDate + " at " + pickupTime);
         System.out.println("Drop: " + dropDate + " at " + dropTime);
         System.out.println("Total Bikes Found: " + bikeData.size());
@@ -124,8 +77,8 @@ public class RoyalBrothersTest {
         for (int i = 0; i < bikeData.size(); i++) {
             System.out.println((i + 1) + ". " + bikeData.get(i));
         }
-        System.out.println("Total bikes found: " + bikeData.size());
-        System.out.println("========================\n");
+      ///  System.out.println("Total bikes found: " + bikeData.size());
+        //System.out.println("========================\n");
     }
 
     @AfterClass
