@@ -3,6 +3,7 @@
 <suite name="RoyalBrothersSuite" verbose="1">
     <test name="DirectTestRunner">
         <classes>
+<!--            //add-->
             <class name="com.royalbrothers.RoyalBrothersTest"/>
         </classes>
     </test>
